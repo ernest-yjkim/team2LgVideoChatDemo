@@ -41,6 +41,10 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.2  
       - name: Set SonarQube properties
         run: |
+          echo "sonar.cfamily.file.suffixes=-" >> $GITHUB_ENV
+          echo "sonar.cpp.file.suffixes=-" >> $GITHUB_ENV
+          echo "sonar.objc.file.suffixes=-" >> $GITHUB_ENV
+
           echo "sonar.cfamily.build-wrapper-output=$GITHUB_WORKSPACE/bw-output" >> $GITHUB_ENV
           echo "sonar.cfamily.build-wrapper-cmd=$GITHUB_WORKSPACE/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir $GITHUB_WORKSPACE/bw-output" >> $GITHUB_ENV          
       - name: Build and analyze
