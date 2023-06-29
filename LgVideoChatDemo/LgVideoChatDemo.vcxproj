@@ -108,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>K:\sss\cmu\LgVideoChatDemo05-11-23\opencv\build\include;..\webrtcVAD\webrtcVAD\webrtc\inc;..\..\opencv\build\include;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>K:\sss\cmu\LgVideoChatDemo05-11-23\opencv\build\include;..\webrtcVAD\webrtcVAD\webrtc\inc;..\opencv\build\include;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/guard:cf %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
