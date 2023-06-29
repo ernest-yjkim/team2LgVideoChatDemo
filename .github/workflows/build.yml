@@ -41,8 +41,8 @@ jobs:
         uses: microsoft/setup-msbuild@v1.0.2  
       - name: Set SonarQube properties
         run: |
-          echo "sonar.cfamily.build-wrapper-output=$(Build.BinariesDirectory)/bw-output" >> $GITHUB_ENV
-          echo "sonar.cfamily.build-wrapper-cmd=$(Agent.ToolsDirectory)/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir $(Build.BinariesDirectory)/bw-output" >> $GITHUB_ENV
+          echo "sonar.cfamily.build-wrapper-output=$GITHUB_WORKSPACE/bw-output" >> $GITHUB_ENV
+          echo "sonar.cfamily.build-wrapper-cmd=$GITHUB_WORKSPACE/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir $GITHUB_WORKSPACE/bw-output" >> $GITHUB_ENV          
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
