@@ -53,6 +53,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"ernest-yjkim_team2LgVideoChatDemo" /o:"ernest-yjkim" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" -Dsonar.c.file.suffixes=- -Dsonar.cpp.file.suffixes=- -Dsonar.objc.file.suffixes=-
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"ernest-yjkim_team2LgVideoChatDemo" /o:"ernest-yjkim" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" -Dsonar.cfamily.build-wrapper-output=$GITHUB_WORKSPACE/bw-output -Dsonar.cfamily.build-wrapper-cmd="$GITHUB_WORKSPACE/build-wrapper-linux-x86/build-wrapper-linux-x86-64 --out-dir $GITHUB_WORKSPACE/bw-output"
           MsBuild.exe /t:Rebuild
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
