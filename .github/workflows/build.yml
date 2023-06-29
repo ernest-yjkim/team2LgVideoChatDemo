@@ -37,15 +37,12 @@ jobs:
       - name: Set up msbuild
         uses: microsoft/setup-msbuild@v1.1  
       - name: Install sonar-scanner and build-wrapper
-        uses: SonarSource/sonarcloud-github-c-cpp@v1
-      - name: Run build-wrapper
-        run: |
-          build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild /t:rebuild /nodeReuse:false
+        uses: SonarSource/sonarcloud-github-c-cpp@v1          
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"ernest-yjkim_team2LgVideoChatDemo" /o:"ernest-yjkim" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
-          msbuild /t:rebuild
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"ernest-yjkim_team2LgVideoChatDemo" /o:"ernest-yjkim" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild /t:rebuild /nodeReuse:false
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
